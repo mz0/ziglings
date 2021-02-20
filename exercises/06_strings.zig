@@ -22,7 +22,7 @@ pub fn main() void {
     const d: u8 = ziggy[4];
 
     // (Problem 2)
-    // Use the array repeat '**' operator to make "ha ha ha".
+    // Use the array repeat '**' operator to make "ha ha ha ".
     const laugh = "ha " ** 3;
 
     // (Problem 3)
