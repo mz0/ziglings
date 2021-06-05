@@ -12,7 +12,7 @@ programs and places them in a `healed` directory, which is NOT committed to the
 repo.
 
 ```bash
-$ ./eowyn.sh
+$ patches/eowyn.sh
 ```
 
 (If you invoke her from elsewhere, she'll come here to ply her trade.)
@@ -32,4 +32,3 @@ $ zig build -Dhealed [step]
 Another Bash shell script named `gollum.sh` may also be found. He snatches the
 original answers and stows them in his secret answers stash. If you leave him
 alone, he'll leave you alone.
-

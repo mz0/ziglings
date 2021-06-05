@@ -1,23 +1,28 @@
-#!/bin/bash
+#!/bin/sh
 #
 #     "It isn't fair, my precious, is it,
 #      to ask us what it's got in it's
 #      nassty little pocketsess?"
-#             Gollum, The Hobbit, or There and Back Again 
+#             Gollum, The Hobbit, or There and Back Again
 #
 
-cd $(dirname $(which $0))
-f=$(basename ../exercises/$1*.zig .zig 2> /dev/null)
-b=../exercises/$f.zig
-a=../answers/$f.zig
-p=patches/$f.patch
+if [ ! -f 'patches/gollum.sh' ]
+then
+    echo "We must be run from the project root dir, precious!"; exit 1
+fi
 
-printf "\tf: '$f'\n\tb: '$b'\n\ta: '$a'\n"
+ex=$(printf "%03d" $1)
+echo "Nassssty exercise $ex..."
 
-if [[ ! -f $b ]]; then echo "We hates it!"; exit 1; fi
-if [[ ! -a $a ]]; then echo "Where is it? Where is the answer, precious?"; exit; fi
+f=$(basename exercises/${ex}_*.zig .zig 2> /dev/null)
+b=exercises/$f.zig
+a=answers/$f.zig
+p=patches/patches/$f.patch
 
-echo Hisssss!
+if [ ! -f $b ]; then echo "No $f! We hates it!"; exit 1; fi
+if [ ! -f $a ]; then echo "No $a! Where is it? Where is the answer, precious?"; exit; fi
+
+echo "Hissss!\tbefore: '$b'\n\t after: '$a'\n\t patch: '$p'\n"
 
 diff $b $a > $p
 
