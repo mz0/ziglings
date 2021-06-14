@@ -7,7 +7,7 @@ const print = std.debug.print;
 // When changing this version, be sure to also update README.md in two places:
 //     1) Getting Started
 //     2) Version Changes
-const needed_version = std.SemanticVersion.parse("0.8.0-dev.1983") catch unreachable;
+const needed_version = std.SemanticVersion.parse("0.9.0-dev.137") catch unreachable;
 
 const Exercise = struct {
     /// main_file must have the format key_name.zig.
@@ -438,6 +438,10 @@ const exercises = [_]Exercise{
         .main_file = "089_async6.zig",
         .output = ".com: Example Title, .org: Example Title.",
     },
+    .{
+        .main_file = "090_async7.zig",
+        .output = "beef? BEEF!",
+    },
 };
 
 /// Check the zig version to make sure it can compile the examples properly.
@@ -556,7 +560,7 @@ pub fn build(b: *Builder) void {
         named_verify.dependOn(&verify_step.step);
 
         const chain_verify = b.allocator.create(Step) catch unreachable;
-        chain_verify.* = Step.initNoOp(.Custom, b.fmt("chain {s}", .{key}), b.allocator);
+        chain_verify.* = Step.initNoOp(.custom, b.fmt("chain {s}", .{key}), b.allocator);
         chain_verify.dependOn(&verify_step.step);
 
         const named_chain = b.step(b.fmt("{s}_start", .{key}), b.fmt("Check all solutions starting at {s}", .{ex.main_file}));
@@ -583,7 +587,7 @@ const ZiglingStep = struct {
     pub fn create(builder: *Builder, exercise: Exercise, use_healed: bool) *@This() {
         const self = builder.allocator.create(@This()) catch unreachable;
         self.* = .{
-            .step = Step.init(.Custom, exercise.main_file, builder.allocator, make),
+            .step = Step.init(.custom, exercise.main_file, builder.allocator, make),
             .exercise = exercise,
             .builder = builder,
             .use_healed = use_healed,
