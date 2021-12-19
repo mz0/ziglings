@@ -1,4 +1,5 @@
 const std = @import("std");
+const builtin = @import("builtin");
 const Builder = std.build.Builder;
 const Step = std.build.Step;
 const assert = std.debug.assert;
@@ -7,7 +8,7 @@ const print = std.debug.print;
 // When changing this version, be sure to also update README.md in two places:
 //     1) Getting Started
 //     2) Version Changes
-const needed_version = std.SemanticVersion.parse("0.9.0-dev.137") catch unreachable;
+const needed_version = std.SemanticVersion.parse("0.9.0-dev.1343") catch unreachable;
 
 const Exercise = struct {
     /// main_file must have the format key_name.zig.
@@ -280,7 +281,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "052_slices.zig",
-        .output = "Hand1: A 4 K 8 Hand2: 5 2 Q J",
+        .output = "Hand1: A 4 K 8 \nHand2: 5 2 Q J",
     },
     .{
         .main_file = "053_slices2.zig",
@@ -305,7 +306,7 @@ const exercises = [_]Exercise{
     .{
         .main_file = "058_quiz7.zig",
         .output = "Archer's Point--2->Bridge--1->Dogwood Grove--3->Cottage--2->East Pond--1->Fox Pond",
-        .hint = "This is the biggest program we've seen yet. But you can do it!"
+        .hint = "This is the biggest program we've seen yet. But you can do it!",
     },
     .{
         .main_file = "059_integers.zig",
@@ -339,7 +340,7 @@ const exercises = [_]Exercise{
     .{
         .main_file = "066_comptime.zig",
         .output = "Immutable: 12345, 987.654; Mutable: 54321, 456.789; Types: comptime_int, comptime_float, u32, f32",
-        .hint = "It may help to read this one out loud to your favorite stuffed animal until it sinks in completely."
+        .hint = "It may help to read this one out loud to your favorite stuffed animal until it sinks in completely.",
     },
     .{
         .main_file = "067_comptime2.zig",
@@ -442,16 +443,20 @@ const exercises = [_]Exercise{
         .main_file = "090_async7.zig",
         .output = "beef? BEEF!",
     },
+    .{
+        .main_file = "091_async8.zig",
+        .output = "ABCDEF",
+    },
 };
 
 /// Check the zig version to make sure it can compile the examples properly.
 /// This will compile with Zig 0.6.0 and later.
 fn checkVersion() bool {
-    if (!@hasDecl(std.builtin, "zig_version")) {
+    if (!@hasDecl(builtin, "zig_version")) {
         return false;
     }
 
-    const version = std.builtin.zig_version;
+    const version = builtin.zig_version;
     const order = version.order(needed_version);
     return order != .lt;
 }
@@ -490,7 +495,7 @@ pub fn build(b: *Builder) void {
         .auto => {
             if (std.io.getStdErr().supportsAnsiEscapeCodes()) {
                 use_color_escapes = true;
-            } else if (std.builtin.os.tag == .windows) {
+            } else if (builtin.os.tag == .windows) {
                 const w32 = struct {
                     const WINAPI = std.os.windows.WINAPI;
                     const DWORD = std.os.windows.DWORD;
@@ -680,7 +685,7 @@ const ZiglingStep = struct {
             return error.InvalidOutput;
         }
 
-        print("{s}PASSED: {s}{s}\n", .{ green_text, output, reset_text });
+        print("{s}PASSED:\n{s}{s}\n", .{ green_text, output, reset_text });
     }
 
     // The normal compile step calls os.exit, so we can't use it as a library :(

@@ -28,6 +28,16 @@
 // a little Zig program to help him plan his trips through the woods,
 // but it has some mistakes.
 //
+// *************************************************************
+// *                A NOTE ABOUT THIS EXERCISE                 *
+// *                                                           *
+// * You do NOT have to read and understand every bit of this  *
+// * program. This is a very big example. Feel free to skim    *
+// * through it and then just focus on the few parts that are  *
+// * actually broken!                                          *
+// *                                                           *
+// *************************************************************
+//
 const print = @import("std").debug.print;
 
 // The grue is a nod to Zork.
@@ -176,11 +186,8 @@ const TripItem = union(enum) {
     path: *const Path,
 
     // This is a little helper function to print the two different
-    // types of item correctly. Note how this "print()" is namespaced
-    // to the TripItem union and doesn't interfere with calling the
-    // "print()" from the standard library we imported at the top of
-    // this program.
-    fn print(self: TripItem) void {
+    // types of item correctly.
+    fn printMe(self: TripItem) void {
         switch (self) {
             // Oops! The hermit forgot how to capture the union values
             // in a switch statement. Please capture both values as
@@ -194,7 +201,7 @@ const TripItem = union(enum) {
 // The Hermit's Notebook is where all the magic happens. A notebook
 // entry is a Place discovered on the map along with the Path taken to
 // get there and the distance to reach it from the start point. If we
-// find a better Path to reach a Place (lower distance), we update the
+// find a better Path to reach a Place (shorter distance), we update the
 // entry. Entries also serve as a "todo" list which is how we keep
 // track of which paths to explore next.
 const NotebookEntry = struct {
@@ -427,7 +434,7 @@ fn printTrip(trip: []?TripItem) void {
     while (i > 0) {
         i -= 1;
         if (trip[i] == null) continue;
-        trip[i].?.print();
+        trip[i].?.printMe();
     }
 
     print("\n", .{});

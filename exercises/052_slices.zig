@@ -24,7 +24,7 @@
 // first item at x and the last item at y-1. You can leave the y
 // off to get "the rest of the items".
 //
-// Notice that the type of a slice on an array of u8 items is []u8.
+// The type of a slice on an array of u8 items is []u8.
 //
 const std = @import("std");
 
@@ -47,6 +47,7 @@ fn printHand(hand: ???) void {
     for (hand) |h| {
         std.debug.print("{u} ", .{h});
     }
+    std.debug.print("\n", .{});
 }
 //
 // Fun fact: Under the hood, slices are stored as a pointer to

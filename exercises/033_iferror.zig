@@ -1,6 +1,6 @@
 //
 // Let's revisit the very first error exercise. This time, we're going to
-// look at a special error-handling type of the "if" statement.
+// look at an error-handling variation of the "if" statement.
 //
 //     if (foo) |value| {
 //
@@ -14,6 +14,12 @@
 //
 // We'll take it even further and use a switch statement to handle
 // the error types.
+//
+//     if (foo) |value| {
+//         ...
+//     } else |err| switch(err) {
+//         ...
+//     }
 //
 const MyNumberError = error{
     TooBig,
@@ -30,7 +36,7 @@ pub fn main() void {
 
         var n = numberMaybeFail(num);
         if (n) |value| {
-            std.debug.print("=4. ", .{});
+            std.debug.print("={}. ", .{value});
         } else |err| switch (err) {
             MyNumberError.TooBig => std.debug.print(">4. ", .{}),
             MyNumberError.TooSmall => std.debug.print("<4. ", .{}),

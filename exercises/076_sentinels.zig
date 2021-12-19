@@ -53,16 +53,14 @@ pub fn main() void {
 
     // So now we have a zero-terminated array and a many-item
     // pointer that reference the same data: a sequence of
-    // numbers that both ends in and CONTAINS the sentinal value.
+    // numbers that both ends in and CONTAINS the sentinel value.
     //
     // Attempting to loop through and print both of these should
     // demonstrate how they are similar and different.
     //
     // (It turns out that the array prints completely, including
-    // the sentinel 0 in the middle. The many-item pointer must
-    // stop at the first sentinel value. The difference is simply
-    // that arrays have a known length and many-item pointers
-    // don't.)
+    // the sentinel 0 in the middle. The many-item pointer stops
+    // at the first sentinel value.)
     printSequence(nums);
     printSequence(ptr);
 

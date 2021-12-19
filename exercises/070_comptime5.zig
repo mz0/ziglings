@@ -50,12 +50,16 @@ const RubberDuck = struct {
     }
 
     fn quack(self: RubberDuck) void {
+        // Assigning an expression to '_' allows us to safely
+        // "use" the value while also ignoring it.
+        _ = self;
         print("\"Squeek!\" ", .{});
     }
 
     fn listen(self: RubberDuck, dev_talk: []const u8) void {
         // Listen to developer talk about programming problem.
         // Silently contemplate problem. Emit helpful sound.
+        _ = dev_talk;
         self.quack();
     }
 };
@@ -136,6 +140,6 @@ fn isADuck(possible_duck: anytype) bool {
         // error, not a runtime panic or crash!
         possible_duck.quack();
     }
-        
+
     return is_duck;
 }
