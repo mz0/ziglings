@@ -128,10 +128,10 @@ pub fn main() void {
         // wanted for this Food.
         //
         // Please return this Food from the loop.
-        break;
-    };
-    // ^ Oops! We forgot to return Mac & Cheese as the default
-    // Food when the requested ingredients aren't found.
+        break food;
+    } else menu[0];
+    // return Mac & Cheese as the default Food
+    // when the requested ingredients aren't found.
 
     print("Enjoy your {s}!\n", .{meal.name});
 }
