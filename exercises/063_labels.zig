@@ -103,7 +103,7 @@ pub fn main() void {
     const wanted_ingredients = [_]u8{ 0, 3 }; // Chili, Cheese
 
     // Look at each Food on the menu...
-    var meal = food_loop: for (menu) |food| {
+    const meal = food_loop: for (menu) |food| {
 
         // Now look at each required ingredient for the Food...
         for (food.requires) |required, required_ingredient| {
