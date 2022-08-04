@@ -14,7 +14,7 @@ pub fn main() void {
 
     const my_num: NumError!u32 = getNumber();
 
-    stdout.print("my_num={}\n", .{my_num}) catch |err| {
+    stdout.print("my_num={!}\n", .{my_num}) catch |err| {
         std.debug.print("Error {}\n", .{err});
     };
 }

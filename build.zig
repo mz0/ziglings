@@ -8,7 +8,7 @@ const print = std.debug.print;
 // When changing this version, be sure to also update README.md in two places:
 //     1) Getting Started
 //     2) Version Changes
-const needed_version = std.SemanticVersion.parse("0.10.0-dev.1427") catch unreachable;
+const needed_version = std.SemanticVersion.parse("0.10.0-dev.3385") catch unreachable;
 
 const Exercise = struct {
     /// main_file must have the format key_name.zig.
@@ -64,7 +64,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "004_arrays.zig",
-        .output = "Fourth: 7, Length: 8",
+        .output = "First: 2, Fourth: 7, Length: 8",
         .hint = "There are two things to complete here.",
     },
     .{
@@ -240,7 +240,8 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "043_pointers5.zig",
-        .output = "Wizard (G:10 H:100 XP:20)",
+        .output = "Wizard (G:10 H:100 XP:20)\n  Mentor: Wizard (G:10000 H:100 XP:2340)",
+
     },
     .{
         .main_file = "044_quiz5.zig",
@@ -331,7 +332,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "064_builtins.zig",
-        .output = "1101 + 0101 = 0010 (true). Furthermore, 11110000 backwards is 00001111.",
+        .output = "1101 + 0101 = 0010 (true). Without overflow: 00010010. Furthermore, 11110000 backwards is 00001111.",
     },
     .{
         .main_file = "065_builtins2.zig",
