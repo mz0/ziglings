@@ -8,7 +8,7 @@ const print = std.debug.print;
 // When changing this version, be sure to also update README.md in two places:
 //     1) Getting Started
 //     2) Version Changes
-const needed_version = std.SemanticVersion.parse("0.10.0-dev.3978") catch unreachable;
+const needed_version = std.SemanticVersion.parse("0.11.0-dev.2157") catch unreachable;
 
 const Exercise = struct {
     /// main_file must have the format key_name.zig.
@@ -30,6 +30,10 @@ const Exercise = struct {
     /// This exercise makes use of the async feature.
     /// We need to keep track of this, so we compile without the self hosted compiler
     @"async": bool = false,
+
+    /// This exercise makes use of C functions
+    /// We need to keep track of this, so we compile with libc
+    C: bool = false,
 
     /// Returns the name of the main file with .zig stripped.
     pub fn baseName(self: Exercise) []const u8 {
@@ -54,12 +58,12 @@ const Exercise = struct {
 const exercises = [_]Exercise{
     .{
         .main_file = "001_hello.zig",
-        .output = "Hello world",
+        .output = "Hello world!",
         .hint = "DON'T PANIC!\nRead the error above.\nSee how it has something to do with 'main'?\nOpen up the source file as noted and read the comments.\nYou can do this!",
     },
     .{
         .main_file = "002_std.zig",
-        .output = "Standard Library",
+        .output = "Standard Library.",
     },
     .{
         .main_file = "003_assignment.zig",
@@ -123,7 +127,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "016_for2.zig",
-        .output = "13",
+        .output = "The value of bits '1101': 13.",
     },
     .{
         .main_file = "017_quiz2.zig",
@@ -137,7 +141,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "019_functions2.zig",
-        .output = "2 4 8 16",
+        .output = "Powers of two: 2 4 8 16",
     },
     .{
         .main_file = "020_quiz3.zig",
@@ -151,7 +155,7 @@ const exercises = [_]Exercise{
     },
     .{
         .main_file = "022_errors2.zig",
-        .output = "I compiled",
+        .output = "I compiled!",
         .hint = "Get the error union type right to allow this to compile.",
     },
     .{
@@ -418,46 +422,74 @@ const exercises = [_]Exercise{
         .main_file = "083_anonymous_lists.zig",
         .output = "I say hello!",
     },
+    // disabled because of https://github.com/ratfactor/ziglings/issues/163
+    // direct link: https://github.com/ziglang/zig/issues/6025
+    // .{
+    //     .main_file = "084_async.zig",
+    //     .output = "foo() A",
+    //     .hint = "Read the facts. Use the facts.",
+    //     .@"async" = true,
+    // },
+    // .{
+    //     .main_file = "085_async2.zig",
+    //     .output = "Hello async!",
+    //     .@"async" = true,
+    // },
+    // .{
+    //     .main_file = "086_async3.zig",
+    //     .output = "5 4 3 2 1",
+    //     .@"async" = true,
+    // },
+    // .{
+    //     .main_file = "087_async4.zig",
+    //     .output = "1 2 3 4 5",
+    //     .@"async" = true,
+    // },
+    // .{
+    //     .main_file = "088_async5.zig",
+    //     .output = "Example Title.",
+    //     .@"async" = true,
+    // },
+    // .{
+    //     .main_file = "089_async6.zig",
+    //     .output = ".com: Example Title, .org: Example Title.",
+    //     .@"async" = true,
+    // },
+    // .{
+    //     .main_file = "090_async7.zig",
+    //     .output = "beef? BEEF!",
+    //     .@"async" = true,
+    // },
+    // .{
+    //     .main_file = "091_async8.zig",
+    //     .output = "ABCDEF",
+    //     .@"async" = true,
+    // },
     .{
-        .main_file = "084_async.zig",
-        .output = "foo() A",
-        .hint = "Read the facts. Use the facts.",
-        .@"async" = true,
+        .main_file = "092_interfaces.zig",
+        .output = "Daily Insect Report:\nAnt is alive.\nBee visited 17 flowers.\nGrasshopper hopped 32 meters.",
     },
     .{
-        .main_file = "085_async2.zig",
-        .output = "Hello async!",
-        .@"async" = true,
+        .main_file = "093_hello_c.zig",
+        .output = "Hello C from Zig! - C result is 17 chars written.",
+        .C = true,
     },
     .{
-        .main_file = "086_async3.zig",
-        .output = "5 4 3 2 1",
-        .@"async" = true,
+        .main_file = "094_c_math.zig",
+        .output = "The normalized angle of 765.2 degrees is 45.2 degrees.",
+        .C = true,
     },
     .{
-        .main_file = "087_async4.zig",
-        .output = "1 2 3 4 5",
-        .@"async" = true,
+        .main_file = "095_for_loops.zig",
+        .output = "1 2 4 7 8 11 13 14 16 17 19",
     },
     .{
-        .main_file = "088_async5.zig",
-        .output = "Example Title.",
-        .@"async" = true,
+        .main_file = "096_memory_allocation.zig",
+        .output = "Running Average: 0.30 0.25 0.20 0.18 0.22",
     },
     .{
-        .main_file = "089_async6.zig",
-        .output = ".com: Example Title, .org: Example Title.",
-        .@"async" = true,
-    },
-    .{
-        .main_file = "090_async7.zig",
-        .output = "beef? BEEF!",
-        .@"async" = true,
-    },
-    .{
-        .main_file = "091_async8.zig",
-        .output = "ABCDEF",
-        .@"async" = true,
+        .main_file = "999_the_end.zig",
+        .output = "\nThis is the end for now!\nWe hope you had fun and were able to learn a lot, so visit us again when the next exercises are available.",
     },
 };
 
@@ -473,7 +505,7 @@ fn checkVersion() bool {
     return order != .lt;
 }
 
-pub fn build(b: *Builder) void {
+pub fn build(b: *Builder) !void {
     // Use a comptime branch for the version check.
     // If this fails, code after this block is not compiled.
     // It is parsed though, so versions of zig from before 0.6.0
@@ -501,30 +533,24 @@ pub fn build(b: *Builder) void {
     }
 
     use_color_escapes = false;
-    switch (b.color) {
-        .on => use_color_escapes = true,
-        .off => use_color_escapes = false,
-        .auto => {
-            if (std.io.getStdErr().supportsAnsiEscapeCodes()) {
-                use_color_escapes = true;
-            } else if (builtin.os.tag == .windows) {
-                const w32 = struct {
-                    const WINAPI = std.os.windows.WINAPI;
-                    const DWORD = std.os.windows.DWORD;
-                    const ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004;
-                    const STD_ERROR_HANDLE = @bitCast(DWORD, @as(i32, -12));
-                    extern "kernel32" fn GetStdHandle(id: DWORD) callconv(WINAPI) ?*anyopaque;
-                    extern "kernel32" fn GetConsoleMode(console: ?*anyopaque, out_mode: *DWORD) callconv(WINAPI) u32;
-                    extern "kernel32" fn SetConsoleMode(console: ?*anyopaque, mode: DWORD) callconv(WINAPI) u32;
-                };
-                const handle = w32.GetStdHandle(w32.STD_ERROR_HANDLE);
-                var mode: w32.DWORD = 0;
-                if (w32.GetConsoleMode(handle, &mode) != 0) {
-                    mode |= w32.ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-                    use_color_escapes = w32.SetConsoleMode(handle, mode) != 0;
-                }
-            }
-        },
+    if (std.io.getStdErr().supportsAnsiEscapeCodes()) {
+        use_color_escapes = true;
+    } else if (builtin.os.tag == .windows) {
+        const w32 = struct {
+            const WINAPI = std.os.windows.WINAPI;
+            const DWORD = std.os.windows.DWORD;
+            const ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004;
+            const STD_ERROR_HANDLE = @bitCast(DWORD, @as(i32, -12));
+            extern "kernel32" fn GetStdHandle(id: DWORD) callconv(WINAPI) ?*anyopaque;
+            extern "kernel32" fn GetConsoleMode(console: ?*anyopaque, out_mode: *DWORD) callconv(WINAPI) u32;
+            extern "kernel32" fn SetConsoleMode(console: ?*anyopaque, mode: DWORD) callconv(WINAPI) u32;
+        };
+        const handle = w32.GetStdHandle(w32.STD_ERROR_HANDLE);
+        var mode: w32.DWORD = 0;
+        if (w32.GetConsoleMode(handle, &mode) != 0) {
+            mode |= w32.ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+            use_color_escapes = w32.SetConsoleMode(handle, mode) != 0;
+        }
     }
 
     if (use_color_escapes) {
@@ -534,7 +560,7 @@ pub fn build(b: *Builder) void {
         reset_text = "\x1b[0m";
     }
 
-    const header_step = b.addLog(
+    const logo =
         \\
         \\         _       _ _
         \\     ___(_) __ _| (_)_ __   __ _ ___
@@ -544,10 +570,12 @@ pub fn build(b: *Builder) void {
         \\           |___/           |___/
         \\
         \\
-    , .{});
+    ;
+    const header_step = b.step("info", logo);
+    print("{s}\n", .{logo});
 
     const verify_all = b.step("ziglings", "Check all ziglings");
-    verify_all.dependOn(&header_step.step);
+    verify_all.dependOn(header_step);
     b.default_step = verify_all;
 
     var prev_chain_verify = verify_all;
@@ -559,7 +587,8 @@ pub fn build(b: *Builder) void {
         const file_path = std.fs.path.join(b.allocator, &[_][]const u8{
             if (use_healed) "patches/healed" else "exercises", ex.main_file,
         }) catch unreachable;
-        const build_step = b.addExecutable(base_name, file_path);
+        const build_step = b.addExecutable(.{ .name = base_name, .root_source_file = .{ .path = file_path } });
+
         build_step.install();
 
         const verify_step = ZiglingStep.create(b, ex, use_healed);
@@ -577,11 +606,11 @@ pub fn build(b: *Builder) void {
         named_verify.dependOn(&verify_step.step);
 
         const chain_verify = b.allocator.create(Step) catch unreachable;
-        chain_verify.* = Step.initNoOp(.custom, b.fmt("chain {s}", .{key}), b.allocator);
+        chain_verify.* = Step.init(Step.Options{ .id = .custom, .name = b.fmt("chain {s}", .{key}), .owner = b });
         chain_verify.dependOn(&verify_step.step);
 
         const named_chain = b.step(b.fmt("{s}_start", .{key}), b.fmt("Check all solutions starting at {s}", .{ex.main_file}));
-        named_chain.dependOn(&header_step.step);
+        named_chain.dependOn(header_step);
         named_chain.dependOn(chain_verify);
 
         prev_chain_verify.dependOn(chain_verify);
@@ -604,7 +633,7 @@ const ZiglingStep = struct {
     pub fn create(builder: *Builder, exercise: Exercise, use_healed: bool) *@This() {
         const self = builder.allocator.create(@This()) catch unreachable;
         self.* = .{
-            .step = Step.init(.custom, exercise.main_file, builder.allocator, make),
+            .step = Step.init(Step.Options{ .id = .custom, .name = exercise.main_file, .owner = builder, .makeFn = make }),
             .exercise = exercise,
             .builder = builder,
             .use_healed = use_healed,
@@ -612,7 +641,8 @@ const ZiglingStep = struct {
         return self;
     }
 
-    fn make(step: *Step) anyerror!void {
+    fn make(step: *Step, prog_node: *std.Progress.Node) anyerror!void {
+        _ = prog_node;
         const self = @fieldParentPtr(@This(), "step", step);
         self.makeInternal() catch {
             if (self.exercise.hint.len > 0) {
@@ -621,7 +651,7 @@ const ZiglingStep = struct {
 
             print("\n{s}Edit exercises/{s} and run this again.{s}", .{ red_text, self.exercise.main_file, reset_text });
             print("\n{s}To continue from this zigling, use this command:{s}\n    {s}zig build {s}{s}\n", .{ red_text, reset_text, bold_text, self.exercise.key(), reset_text });
-            std.os.exit(0);
+            std.os.exit(1);
         };
     }
 
@@ -632,7 +662,7 @@ const ZiglingStep = struct {
 
         print("Checking {s}...\n", .{self.exercise.main_file});
 
-        const cwd = self.builder.build_root;
+        const cwd = self.builder.build_root.path.?;
 
         const argv = [_][]const u8{exe_file};
 
@@ -683,16 +713,18 @@ const ZiglingStep = struct {
         }
 
         // validate the output
-        if (std.mem.indexOf(u8, output, self.exercise.output) == null) {
+        const trimOutput = std.mem.trimRight(u8, output, " \r\n");
+        const trimExerciseOutput = std.mem.trimRight(u8, self.exercise.output, " \r\n");
+        if (std.mem.indexOf(u8, trimOutput, trimExerciseOutput) == null or trimOutput.len != trimExerciseOutput.len) {
             print(
                 \\
                 \\{s}----------- Expected this output -----------{s}
-                \\{s}
+                \\"{s}"
                 \\{s}----------- but found -----------{s}
-                \\{s}
+                \\"{s}"
                 \\{s}-----------{s}
                 \\
-            , .{ red_text, reset_text, self.exercise.output, red_text, reset_text, output, red_text, reset_text });
+            , .{ red_text, reset_text, trimExerciseOutput, red_text, reset_text, trimOutput, red_text, reset_text });
             return error.InvalidOutput;
         }
 
@@ -711,20 +743,21 @@ const ZiglingStep = struct {
         zig_args.append("build-exe") catch unreachable;
 
         // Enable the stage 1 compiler if using the async feature
-        if (self.exercise.@"async") {
-            zig_args.append("-fstage1") catch unreachable;
-        }
+        // disabled because of https://github.com/ratfactor/ziglings/issues/163
+        // if (self.exercise.@"async") {
+        //     zig_args.append("-fstage1") catch unreachable;
+        // }
 
-        if (builder.color != .auto) {
-            zig_args.append("--color") catch unreachable;
-            zig_args.append(@tagName(builder.color)) catch unreachable;
+        // Enable C support for exercises that use C functions
+        if (self.exercise.C) {
+            zig_args.append("-lc") catch unreachable;
         }
 
         const zig_file = std.fs.path.join(builder.allocator, &[_][]const u8{ if (self.use_healed) "patches/healed" else "exercises", self.exercise.main_file }) catch unreachable;
         zig_args.append(builder.pathFromRoot(zig_file)) catch unreachable;
 
         zig_args.append("--cache-dir") catch unreachable;
-        zig_args.append(builder.pathFromRoot(builder.cache_root)) catch unreachable;
+        zig_args.append(builder.pathFromRoot(builder.cache_root.path.?)) catch unreachable;
 
         zig_args.append("--enable-cache") catch unreachable;
 

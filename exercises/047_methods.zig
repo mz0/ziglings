@@ -62,7 +62,7 @@ const HeatRay = struct {
     damage: u8,
 
     // We love this method:
-    pub fn zap(self: *HeatRay, alien: *Alien) void {
+    pub fn zap(self: HeatRay, alien: *Alien) void {
         alien.health -= if (self.damage >= alien.health) alien.health else self.damage;
     }
 };
@@ -86,7 +86,7 @@ pub fn main() void {
         aliens_alive = 0;
 
         // Loop through every alien by reference (* makes a pointer capture value)
-        for (aliens) |*alien| {
+        for (&aliens) |*alien| {
 
             // *** Zap the alien with the heat ray here! ***
             heat_ray.zap(alien);

@@ -1,13 +1,11 @@
 # Ziglings
 
-Welcome to Ziglings! This project contains a series of tiny broken programs.
-By fixing them, you'll learn how to read and write
-[Zig](https://ziglang.org/)
-code.
+Welcome to Ziglings! This project contains a series of tiny broken programs (and one nasty surprise).
+By fixing them, you'll learn how to read and write [Zig](https://ziglang.org/) code.
 
 ![ziglings](https://user-images.githubusercontent.com/1458409/109398392-c1069500-790a-11eb-8ed4-7d7d74d32666.jpg)
 
-Those tiny broken programs need your help! (You'll also save the planet from
+Those broken programs need your help! (You'll also save the planet from
 evil aliens and help some friendly elephants stick together, which is very
 sweet of you.)
 
@@ -27,6 +25,7 @@ or a "systems" level language such as C.
 Each exercise is self-contained and self-explained. However, you're encouraged
 to also check out these Zig language resources for more detail:
 
+* https://ziglang.org/learn/
 * https://ziglearn.org/
 * https://ziglang.org/documentation/master/
 
@@ -41,7 +40,7 @@ Verify the installation and build number of `zig` like so:
 
 ```bash
 $ zig version
-0.10.0-dev.3978+xxxxxxxxx
+0.11.0-dev.2157+xxxxxxxxx
 ```
 
 Clone this repository with Git:
@@ -51,18 +50,25 @@ $ git clone https://github.com/ratfactor/ziglings
 $ cd ziglings
 ```
 
-Then run `zig build` and follow the instructions to begin!
+Then run `zig build 1` and follow the instructions to begin!
 
 ```bash
-$ zig build
+$ zig build 1
 ```
+## :warning: Attention 
+Due to Zig's new build system, exercises can currently only be run manually with their number!
+
+```bash
+$ zig build xy
+```
+We hope to be able to offer this again soon in the automatic way.
 
 ## A Note About Versions
 
 The Zig language is under very active development. In order to be current,
 Ziglings tracks **development** builds of the Zig compiler rather than
-versioned **release** builds. The last stable release was `0.9.1`, but Ziglings
-needs a dev build with pre-release version "0.10.0" and a build number at least
+versioned **release** builds. The last stable release was `0.10.1`, but Ziglings
+needs a dev build with pre-release version "0.11.0" and a build number at least
 as high as that shown in the example version check above.
 
 It is likely that you'll download a build which is _greater_ than the minimum.
@@ -81,6 +87,12 @@ about input:
 
 ### Version Changes
 
+Version-0.11.0-dev.2157+xxxxxxxxx
+* *2023-02-21* zig 0.11.0-dev.2157 - changes in `build system` - new: parallel processing of the build steps
+* *2023-02-21* zig 0.11.0-dev.1711 - changes in `for loops` - new: Multi-Object For-Loops + Struct-of-Arrays
+* *2023-02-12* zig 0.11.0-dev.1638 - changes in `std.Build` cache_root now returns a directory struct
+* *2023-02-04* zig 0.11.0-dev.1568 - changes in `std.Build` (combine `std.build` and `std.build.Builder` into `std.Build`)
+* *2023-01-14* zig 0.11.0-dev.1302 - changes in `@addWithOverflow` (now returns a tuple) and `@typeInfo`; temporary disabled async functionality
 * *2022-09-09* zig 0.10.0-dev.3978 - change in `NativeTargetInfo.detect` in build
 * *2022-09-06* zig 0.10.0-dev.3880 - Ex 074 correctly fails again: comptime array len
 * *2022-08-29* zig 0.10.0-dev.3685 - `@typeName()` output change, stage1 req. for async
@@ -160,6 +172,9 @@ Core Language
 * [x] Quoted identifiers @""
 * [x] Anonymous structs/tuples/lists
 * [ ] Async <--- IN PROGRESS!
+* [X] Interfaces
+* [X] Working with C
+* [ ] String formatting
 
 ## Contributing
 
