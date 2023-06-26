@@ -17,7 +17,7 @@ const std = @import("std");
 
 pub fn main() void {
     // Let's store the bits of binary number 1101 in
-    // 'little-endian' order (least significant byte first):
+    // 'little-endian' order (least significant byte or bit first):
     const bits = [_]u8{ 1, 0, 1, 1 };
     var value: u32 = 0;
 
@@ -29,9 +29,15 @@ pub fn main() void {
         // Note that we convert the usize i to a u32 with
         // @intCast(), a builtin function just like @import().
         // We'll learn about these properly in a later exercise.
-        var place_value = std.math.pow(u32, 2, @intCast(u32, i));
+        const place_value = std.math.pow(u32, 2, @intCast(u32, i));
         value += place_value * bit;
     }
 
     std.debug.print("The value of bits '1101': {}.\n", .{value});
 }
+//
+// As mentioned in the previous exercise, 'for' loops have gained
+// additional flexibility since these early exercises were
+// written. As we'll see in later exercises, the above syntax for
+// capturing the index is part of a more general ability. Hang in
+// there!

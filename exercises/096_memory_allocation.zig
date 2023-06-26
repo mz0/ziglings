@@ -1,3 +1,4 @@
+//
 // In most of the examples so far, the inputs are known at compile
 // time, thus the amount of memory used by the program is fixed.
 // However, if responding to input whose size is not known at compile
@@ -26,7 +27,7 @@
 //         std.debug.print("ptr={*}\n", .{ptr});
 //
 //         const slice_ptr = try allocator.alloc(f64, 5);
-//         std.debug.print("ptr={*}\n", .{ptr});
+//         std.debug.print("slice_ptr={*}\n", .{slice_ptr});
 //     }
 
 // Instead of an simple integer or a constant sized slice, this
@@ -44,7 +45,7 @@ fn runningAverage(arr: []const f64, avg: []f64) void {
 
     for (0.., arr) |index, val| {
         sum += val;
-        avg[index] = sum / @intToFloat(f64, index + 1);
+        avg[index] = sum / @floatFromInt(f64, index + 1);
     }
 }
 

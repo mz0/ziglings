@@ -1,10 +1,11 @@
 //
 // Zig has support for IEEE-754 floating-point numbers in these
 // specific sizes: f16, f32, f64, f80, and f128. Floating point
-// literals may be written in scientific notation:
+// literals may be written in the same ways as integers but also
+// in scientific notation:
 //
-//     const a1: f32 = 1200.0;     // 1,200
-//     const a2: f32 = 1.2e+3;     // 1,200
+//     const a1: f32 = 1200;       //    1,200
+//     const a2: f32 = 1.2e+3;     //    1,200
 //     const b1: f32 = -500_000.0; // -500,000
 //     const b2: f32 = -5.0e+5;    // -500,000
 //
@@ -22,12 +23,14 @@
 //     const pi: f16 = 3.1415926535;   // rounds to 3.140625
 //     const av: f16 = 6.02214076e+23; // Avogadro's inf(inity)!
 //
-// A float literal has a decimal point. When performing math
-// operations with numeric literals, ensure the types match. Zig
-// does not perform unsafe type coercions behind your back:
+// When performing math operations with numeric literals, ensure
+// the types match. Zig does not perform unsafe type coercions
+// behind your back:
 //
-//     var foo: f16 = 13.5 * 5;   // ERROR!
-//     var foo: f16 = 13.5 * 5.0; // No problem, both are floats
+//    var foo: f16 = 5; // NO ERROR
+//
+//    var foo: u16 = 5; // A literal of a different type
+//    var bar: f16 = foo; // ERROR
 //
 // Please fix the two float problems with this program and
 // display the result as a whole number.
@@ -40,7 +43,7 @@ pub fn main() void {
     //
     // We'll convert this weight from tons to kilograms at a
     // conversion of 907.18kg to the ton.
-    var shuttle_weight: f32 = 907.18 * 2200.0;
+    const shuttle_weight: f16 = 907.18 * 2200;
 
     // By default, float values are formatted in scientific
     // notation. Try experimenting with '{d}' and '{d:.3}' to see
