@@ -1,5 +1,13 @@
 # Ziglings
 
+## ⚠️ Attention! Ziglings has moved to Codeberg!
+
+Check out our handy new URL: https://ziglings.org
+
+Or visit the repo directly at: https://codeberg.org/ziglings/exercises
+
+***
+
 Welcome to Ziglings! This project contains a series of tiny
 broken programs (and one nasty surprise).  By fixing them, you'll
 learn how to read and write [Zig](https://ziglang.org/) code.
@@ -45,14 +53,14 @@ Verify the installation and build number of `zig` like so:
 
 ```
 $ zig version
-0.11.0-dev.3853+xxxxxxxxx
+0.11.0-dev.4246+xxxxxxxxx
 ```
 
 Clone this repository with Git:
 
 ```
-$ git clone https://github.com/ratfactor/ziglings
-$ cd ziglings
+$ git clone https://ziglings.org
+$ cd ziglings.org
 ```
 
 Then run `zig build` and follow the instructions to begin!
@@ -89,7 +97,8 @@ that if you update one, you may need to also update the other.
 
 ### Version Changes
 
-Version-0.11.0-dev.3853+cc2daae47
+Version-0.11.0-dev.4246+71dfce31b
+* *2023-06-26* zig 0.11.0-dev.4246 - changes in compile step (now it can be null)
 * *2023-06-26* zig 0.11.0-dev.3853 - removal of destination type from all cast builtins
 * *2023-06-20* zig 0.11.0-dev.3747 - `@enumToInt` is now `@intFromEnum` and `@intToFloat` is now `@floatFromInt`
 * *2023-05-25* zig 0.11.0-dev.3295 - `std.debug.TTY` is now `std.io.tty`
@@ -113,12 +122,10 @@ Version-0.11.0-dev.3853+cc2daae47
 
 ## Advanced Usage
 
-It can be handy to check just a single exercise or _start_ from a
-single exercise:
+It can be handy to check just a single exercise:
 
 ```
 zig build -Dn=19
-zig build -Dn=19 start
 ```
 
 You can also run without checking for correctness:
