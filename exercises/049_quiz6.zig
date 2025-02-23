@@ -24,6 +24,9 @@ const Elephant = struct {
         return (self.tail != null);
     }
 
+    // Your Elephant trunk methods go here!
+    // ---------------------------------------------------
+
     pub fn getTrunk(self: *Elephant) *Elephant {
         return self.trunk.?; // Remember, this means "orelse unreachable"
     }
@@ -32,13 +35,15 @@ const Elephant = struct {
         return (self.trunk != null);
     }
 
+    // ---------------------------------------------------
+
     pub fn visit(self: *Elephant) void {
         self.visited = true;
     }
 
     pub fn print(self: *Elephant) void {
         // Prints elephant letter and [v]isited
-        var v: u8 = if (self.visited) 'v' else ' ';
+        const v: u8 = if (self.visited) 'v' else ' ';
         std.debug.print("{u}{u} ", .{ self.letter, v });
     }
 };

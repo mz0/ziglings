@@ -38,19 +38,19 @@ pub fn main() void {
     comptime var count = 0;
 
     count += 1;
-    // @compileLog("Count at compile time: ", count);
-    var a1: [count]u8 = .{'A'} ** count;
+    //@compileLog("Count at compile time: ", count);
+    const a1: [count]u8 = .{'A'} ** count;
 
     count += 1;
-    // @compileLog("Count at compile time: ", count);
-    var a2: [count]u8 = .{'B'} ** count;
+    //@compileLog("Count at compile time: ", count);
+    const a2: [count]u8 = .{'B'} ** count;
 
     count += 1;
-    // @compileLog("Count at compile time: ", count);
-    var a3: [count]u8 = .{'C'} ** count;
+    //@compileLog("Count at compile time: ", count);
+    const a3: [count]u8 = .{'C'} ** count;
 
     count += 1;
-    var a4: [count]u8 = .{'D'} ** count;
+    const a4: [count]u8 = .{'D'} ** count;
 
     print("{s} {s} {s} {s}\n", .{ a1, a2, a3, a4 });
 
@@ -63,5 +63,5 @@ pub fn main() void {
     //
     // Try uncommenting this line and playing around with it
     // (copy it, move it) to see what it does:
-    // @compileLog("Count at compile time: ", count);
+    //@compileLog("Count at compile time: ", count);
 }

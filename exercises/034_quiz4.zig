@@ -14,9 +14,7 @@ pub fn main() void {
 
     const my_num: NumError!u32 = getNumber();
 
-    stdout.print("my_num={!}\n", .{my_num}) catch |err| {
-        std.debug.print("Error {}\n", .{err});
-    };
+    return stdout.print("my_num={any}\n", .{my_num}) catch {}; // `{}` type void
 }
 
 // This function is obviously weird and non-functional. But you will not be changing it for this quiz.

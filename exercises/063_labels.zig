@@ -115,12 +115,13 @@ pub fn main() void {
             // (Remember that want_it will be the index number of
             // the ingredient based on its position in the
             // required ingredient list for each food.)
-            if (!for (wanted_ingredients) |want_it| {
+            const found = for (wanted_ingredients) |want_it| {
                 if (required_ingredient == want_it) break true;
-            } else false) continue :food_loop;
+            } else false;
 
             // We did not find this required ingredient, so we
             // can't make this Food. Continue the outer loop.
+            if (!found) continue :food_loop;
         }
 
         // If we get this far, the required ingredients were all
@@ -129,8 +130,11 @@ pub fn main() void {
         // Please return this Food from the loop.
         break food;
     } else menu[0];
-    // return Mac & Cheese as the default Food
-    // when the requested ingredients aren't found.
+    // return Mac & Cheese as the default
+    // Food when the requested ingredients aren't found.
 
     print("Enjoy your {s}!\n", .{meal.name});
 }
+
+// Challenge: You can also do away with the 'found' variable in
+// the inner loop. See if you can figure out how to do that!
