@@ -9,8 +9,10 @@ const std = @import("std");
 
 const NumError = error{IllegalNumber};
 
-pub fn main() void {
-    const stdout = std.io.getStdOut().writer();
+pub fn main(init: std.process.Init) !void {
+    const io = init.io;
+    var stdout_writer = std.Io.File.stdout().writer(io, &.{});
+    const stdout = &stdout_writer.interface;
 
     const my_num: NumError!u32 = getNumber();
 

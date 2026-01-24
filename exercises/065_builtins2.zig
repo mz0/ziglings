@@ -99,11 +99,15 @@ pub fn main() void {
     // 'fields' is a slice of StructFields. Here's the declaration:
     //
     //     pub const StructField = struct {
-    //         name: []const u8,
+    //         name: [:0]const u8,
     //         type: type,
-    //         default_value: anytype,
+    //         default_value_ptr: ?*const anyopaque,
     //         is_comptime: bool,
     //         alignment: comptime_int,
+    //
+    //         defaultValue() ?sf.type  // Function that loads the
+    //                                  // field's default value from
+    //                                  // `default_value_ptr`
     //     };
     //
     // Please complete these 'if' statements so that the field
@@ -142,7 +146,7 @@ pub fn main() void {
 //
 // We'll be seeing @typeName again in Exercise 070. For now, you can
 // see that it takes a Type and returns a u8 "string".
-fn maximumNarcissism(myType: anytype) []const u8 {
+fn maximumNarcissism(myType: type) []const u8 {
     const indexOf = @import("std").mem.indexOf;
 
     // Turn "065_builtins2.Narcissus" into "Narcissus"
