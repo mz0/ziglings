@@ -4,7 +4,7 @@
 // Ziglings exercise.
 //
 // We've also seen @intCast() in "016_for2.zig", "058_quiz7.zig";
-// and @intFromEnum() in "036_enums2.zig".
+// and @backingInt() in "036_enums2.zig".
 //
 // Builtins are special because they are intrinsic to the Zig
 // language itself (as opposed to being provided in the standard
@@ -62,7 +62,8 @@ pub fn main() void {
     // our way backwards to the operation that caused the overflow.
     //
     // If there was no overflow at all while adding 5 to a, what value would
-    // 'my_result' hold? Write the answer in into 'expected_result'.
+    // 'my_result[0]' hold? Do the math yourself and write the answer as a
+    // literal into 'expected_result'.
     const expected_result: u8 = 0b10010;
     print(". Without overflow: {b:0>8}. ", .{expected_result});
 
